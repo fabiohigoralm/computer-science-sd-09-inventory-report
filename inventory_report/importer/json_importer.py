@@ -7,4 +7,4 @@ class JsonImporter(Importer):
         if (path.endswith(".json")):
             with open(path, mode='r') as file:
                 return json.load(file)
-        raise ValueError('A extensão do arquivo é inválida')
+        raise ValueError('Arquivo inválido')

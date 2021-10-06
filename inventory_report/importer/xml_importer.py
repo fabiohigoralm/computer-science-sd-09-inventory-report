@@ -15,4 +15,4 @@ class XmlImporter(Importer):
                         obj[item_data.tag] = item_data.text
                     list_data.append(obj)
                 return list_data
-        raise ValueError('A extensão do arquivo é inválida')
+        raise ValueError('Arquivo inválido')

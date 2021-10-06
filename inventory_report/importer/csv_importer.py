@@ -8,4 +8,4 @@ class CsvImporter(Importer):
             with open(path, mode='r') as file:
                 content = csv.DictReader(file)
                 return [*content]
-        raise ValueError('A extensão do arquivo é inválida')
+        raise ValueError('Arquivo inválido')
