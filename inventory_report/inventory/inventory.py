@@ -1,6 +1,6 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
-import xml.etree.ElementTree as xmlReader
+import xml.etree.ElementTree as xmlreader
 
 import csv
 import json
@@ -8,7 +8,7 @@ import json
 
 class Inventory:
     def xml_reader(file):
-        xml_content = xmlReader.parse(file)
+        xml_content = xmlreader.parse(file)
         root = xml_content.getroot()
         list_data = []
         for item in root:
@@ -38,14 +38,3 @@ class Inventory:
             return SimpleReport.generate(data)
         if (report_type == 'completo'):
             return CompleteReport.generate(data)
-
-
-# xml_content = xmlReader.parse('./inventory_report/data/inventory.xml')
-# root = xml_content.getroot()
-# list_data = []
-# for item in root:
-#     obj = {}
-#     for item_data in item:
-#         obj[item_data.tag] = item_data.text
-#     list_data.append(obj)
-# print(list_data)
