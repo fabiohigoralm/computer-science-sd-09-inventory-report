@@ -1,17 +1,34 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
+import xml.etree.ElementTree as xmlReader
+
 import csv
 import json
 
 
 class Inventory:
-    def read_data(path):
+    def xml_reader(file):
+        xml_content = xmlReader.parse(file)
+        root = xml_content.getroot()
+        list_data = []
+        for item in root:
+            obj = {}
+            for item_data in item:
+                obj[item_data.tag] = item_data.text
+            list_data.append(obj)
+        return list_data
+
+    @classmethod
+    def read_data(cls, path):
         with open(path, mode='r') as file:
             if (path.endswith(".csv")):
                 content = csv.DictReader(file)
                 return [*content]
             if (path.endswith(".json")):
                 content = json.load(file)
+                return content
+            if (path.endswith(".xml")):
+                content = cls.xml_reader(file)
                 return content
 
     @classmethod
@@ -23,5 +40,12 @@ class Inventory:
             return CompleteReport.generate(data)
 
 
-teste = 'xablau.json'
-print(teste.endswith(".csv"))
+# xml_content = xmlReader.parse('./inventory_report/data/inventory.xml')
+# root = xml_content.getroot()
+# list_data = []
+# for item in root:
+#     obj = {}
+#     for item_data in item:
+#         obj[item_data.tag] = item_data.text
+#     list_data.append(obj)
+# print(list_data)
