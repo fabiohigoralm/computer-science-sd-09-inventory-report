@@ -2,6 +2,7 @@ from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.inventory.inventory_iterator import InventoryIterator
 from collections.abc import Iterable
+# fabio
 
 
 class InventoryRefactor(Iterable):
